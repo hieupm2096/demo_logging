@@ -24,20 +24,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     emit(const ActivityFetchedInProgress());
 
-    try {
-      for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
+      try {
         final response = await _client.getActivity();
 
         if (state is ActivityFetchedSuccess) {
           final activities = (state as ActivityFetchedSuccess).activities;
-          activities.add(response);
-          emit(ActivityFetchedSuccess(activities));
+          final newActivities = [...activities, response];
+          emit(ActivityFetchedSuccess(newActivities));
         } else {
           emit(ActivityFetchedSuccess([response]));
         }
+      } on Exception {
+        emit(const ActivityFetchedFailure('Có lỗi xảy ra'));
+        return;
       }
-    } on Exception {
-      emit(const ActivityFetchedFailure('Có lỗi xảy ra'));
     }
   }
 }

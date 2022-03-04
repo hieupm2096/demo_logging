@@ -26,7 +26,7 @@ class _RestClient implements RestClient {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ActivityModel>(
             Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/tasks',
+                .compose(_dio.options, '/activity',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ActivityModel.fromJson(_result.data!);

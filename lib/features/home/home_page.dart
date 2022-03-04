@@ -22,7 +22,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Activities'),
       ),
       body: BlocProvider(
-        create: (context) => HomeBloc(client: RestClient(DioDi().dio)),
+        create: (context) => HomeBloc(client: RestClient(DioDi().dio))
+          ..add(const ActivityFetched()),
         child: const ActivityList(),
       ),
     );
