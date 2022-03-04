@@ -24,7 +24,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     emit(const ActivityFetchedInProgress());
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 100; i++) {
       try {
         final response = await _client.getActivity();
 
