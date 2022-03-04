@@ -1,4 +1,5 @@
 import 'package:demo_logging/features/home/bloc/home_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,6 +27,10 @@ class ActivityList extends StatelessWidget {
         } else if (state is ActivityFetchedSuccess) {
           return ListView.separated(
             itemBuilder: (context, index) {
+              if (kDebugMode) {
+                print(
+                    'Build item ${index + 1}: ${DateTime.now().toIso8601String()}');
+              }
               return ListTile(
                 title: Text(state.activities[index].activity ?? ''),
               );

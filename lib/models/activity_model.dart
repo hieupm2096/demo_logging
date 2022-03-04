@@ -33,4 +33,9 @@ class ActivityModel {
     map['key'] = key;
     return map;
   }
+
+  @override
+  String toString() {
+    return 'Activity$key';
+  }
 }
